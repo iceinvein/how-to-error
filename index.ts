@@ -20,7 +20,7 @@ function main(throwWhich: 1 | 2) {
     if (error instanceof AuthorisationError) {
       console.log("Handling authorisation error: ", error.message);
 
-      return;
+      return; // early exit
     }
     if (error instanceof NetworkError) {
       console.log("Handling network error: ", error.message);
@@ -33,7 +33,7 @@ function main(throwWhich: 1 | 2) {
       return;
     }
 
-    // Some other error so propagate so someone else can handle it
+    // Some other error, propagate so someone else can handle it
     throw error;
   }
   
@@ -41,7 +41,7 @@ function main(throwWhich: 1 | 2) {
     throwWhich === 2 && thisThrowsNetworkError();
   } catch (error) {
     if (!isException(error)) {
-      // Some other error so propagate so someone else can handle it
+      // Some other error, propagate so someone else can handle it
       throw error;
     }
 
